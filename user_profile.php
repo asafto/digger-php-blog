@@ -2,7 +2,7 @@
 
 session_start();// creates a session id cookie for the user in the browser
 
-    $page_title = 'About Us'
+$page_title = 'User Profile'
 ?>
 <?php include 'tpl/header.php'; ?>
 <main class="min-h-900">
@@ -10,8 +10,7 @@ session_start();// creates a session id cookie for the user in the browser
         <section id="top-content">
             <div class="row">
                 <div class="col-12 mt-3">
-                    <h1 class="display-4">About Digger company</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    <h1 class="display-4">Change Your User Details</h1>
                 </div>
             </div>
         </section>

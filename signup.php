@@ -1,5 +1,8 @@
 <?php 
-    $page_title = 'About Us'
+
+session_start();// creates a session id cookie for the user in the browser
+
+$page_title = 'About Us'
 ?>
 <?php include 'tpl/header.php'; ?>
 <main class="min-h-900">

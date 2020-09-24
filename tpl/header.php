@@ -34,12 +34,24 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
+                        <?php if ( !isset($_SESSION['user_id']) ): ?>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="signin.php">Signin</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="signup.php">Signup</a>
                         </li>
+                        <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="user_profile.php">
+                                <?= $_SESSION['user_name']; ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="logout.php">Logout</a>
+                        </li>
+
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
