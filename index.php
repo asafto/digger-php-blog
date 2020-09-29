@@ -2,7 +2,7 @@
 
 session_start();// creates a session id cookie for the user in the browser
 
-$page_title = 'Home Page'
+$page_title = 'Home Page';
 ?>
 <?php include 'tpl/header.php'; ?>
 <main class="min-h-900">

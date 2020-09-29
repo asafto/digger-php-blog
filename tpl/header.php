@@ -44,7 +44,7 @@
                         <?php else : ?>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="user_profile.php">
-                                <?= $_SESSION['user_name']; ?>
+                                <?= htmlentities($_SESSION['user_name']); ?>
                             </a>
                         </li>
                         <li class="nav-item">

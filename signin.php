@@ -13,10 +13,17 @@ require_once 'app/helpers.php';
     //if submit was clicked
     if( isset($_POST['submit'] )) {
         // collecting the information from the form into variables
-       $email = !empty ($_POST['email']) ? trim($_POST['email']) : ''; 
+    //    $email = !empty ($_POST['email']) ? trim($_POST['email']) : ''; 
        
-       $password = !empty ($_POST['password']) ? trim($_POST['password']) : '';
-
+    //    $password = !empty ($_POST['password']) ? trim($_POST['password']) : '';
+    //replacing the population of email and password to work with filter_input for xss prevention
+    
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $email = trim($email);
+        
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $password = trim($password);
+        
        $form_valid = true;
        
        // populating error messages in the errors array in case email or password were not provided
@@ -33,17 +40,29 @@ require_once 'app/helpers.php';
        if ( $form_valid ) {
            
            $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PWD, MYSQL_DB);
-            
-           $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+           //preventing sql injection on input fields
+           $email = mysqli_real_escape_string($link, $email); 
+           $password = mysqli_real_escape_string($link, $password); 
+           //end of sql injection prevention
+           $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
            
            //mysqli query will return false if the query is wrong (bad table name or sql command, otherwise it will return an object with the results - might be still with 0 results - which is still a truthy object)
            $result = mysqli_query($link, $sql);
-           if( $result && mysqli_num_rows($result) >0 ) {
+           if( $result && mysqli_num_rows($result) == 1 ) {
+               
                
                $user = mysqli_fetch_assoc($result);
-               $_SESSION['user_id'] = $user['id'];
-               $_SESSION['user_name'] = $user['name'];
-               header('location: blog.php');
+               
+               if (password_verify($password, $user['password'])) {
+                   
+                   $_SESSION['user_id'] = $user['id'];
+                   $_SESSION['user_name'] = $user['name'];
+                   header('location: blog.php');
+               } else {
+                   
+                $error['submit'] = ' * Invalid email or password';
+                
+               }
                
            } else {
                
