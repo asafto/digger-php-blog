@@ -42,7 +42,7 @@ if ( !function_exists('validate_image') ) {
         if ( $files['image']['size'] <= $max_size ) {
            
             $file_info = pathinfo($files['image']['name']);
-            if( inarray(strtolower($file_info['extension']), $ex) ) {
+            if( in_array(strtolower($file_info['extension']), $ex) ) {
                 
                 if (is_uploaded_file($files['image']['tmp_name'])) {
                     
