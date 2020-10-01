@@ -1,3 +1,9 @@
 .min-h-900 {
   min-height: 900px;
 }
+.no-decoration:hover {
+  text-decoration: none !important;
+}
+.no-arrow::after {
+  display: none !important;
+}

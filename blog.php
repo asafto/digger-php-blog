@@ -12,6 +12,7 @@ $sql = "SELECT u.name,u.profile_image,p.* FROM posts p
         ORDER BY p.date DESC";
 
 $result = mysqli_query($link, $sql);
+$uid = $_SESSION['user_id'] ?? null;
 
 ?>
 
@@ -46,6 +47,25 @@ $result = mysqli_query($link, $sql);
                         <div class="card-body">
                             <h3><?= htmlentities($post['title']); ?></h3>
                             <p><?= str_replace("\n", '<br>', htmlentities($post['article'])); ?></p>
+                            <?php if( $uid && $post['user_id'] == $uid ): ?>
+                            <div class="float-right">
+                                <a class="dropdown-toggle no-decoration no-arrow" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="edit_post.php?pid=<?= $post['id']; ?>">
+                                        <i class="fas fa-pen"></i>
+                                        Edit
+                                    </a>
+                                    <a class="dropdown-item delete-post-btn"
+                                        href="delete_post.php?pid=<?= $post['id']; ?>">
+                                        <i class="fas fa-eraser"></i>
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
