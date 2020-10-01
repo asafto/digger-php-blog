@@ -13,12 +13,6 @@ $error = ['name'=> '', 'email' => '', 'password' => '', 'submit' => '',];
 
 if( isset($_POST['submit']) ){
 
-    echo '<pre>';
-  print_r($_POST);
-  echo '<hr>';
-  print_r($_FILES);
-  echo '</pre>';
-
   $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PWD, MYSQL_DB);
   mysqli_query($link, "SET NAMES utf8");
 
@@ -57,6 +51,16 @@ if( isset($_POST['submit']) ){
   if( $form_valid ){
 
     $profile_image = 'default-profile.png';
+
+    if ( isset($_FILES['image']['error']) && $_FILES['image']['error'] == 0) {
+        
+        if (validate_image($_FILES)) {
+            $profile_image = date('d.m.Y.H.i.s') . '-' . str_rand(5) . '-' . $_FILES['image']['name'];
+            
+            move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $profile_image);
+        }
+    }
+    
     $password = password_hash($password, PASSWORD_BCRYPT);
     $sql = "INSERT INTO users VALUES(null, '$name', '$email', '$password', '$profile_image')";
     $result = mysqli_query($link, $sql);

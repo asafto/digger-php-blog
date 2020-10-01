@@ -30,3 +30,47 @@ if ( !function_exists('email_exist') ) {
     }
     
 }
+
+if ( !function_exists('validate_image') ) {
+
+    function validate_image($files) {
+        
+        $valid = false;
+        $max_size = 1024 * 1024 * 5;
+        $ex = ['png', 'jpeg', 'jpg', 'gif', 'bmp'];
+
+        if ( $files['image']['size'] <= $max_size ) {
+           
+            $file_info = pathinfo($files['image']['name']);
+            if( inarray(strtolower($file_info['extension']), $ex) ) {
+                
+                if (is_uploaded_file($files['image']['tmp_name'])) {
+                    
+                    $valid = true;
+                    
+                }
+                
+            }
+            
+        }
+
+        return $valid;
+    }
+    
+}
+if (! function_exists('str_rand')) {
+    function str_rand($len = 30){
+
+        $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        $str_random = '';
+        $max = strlen($chars) - 1;
+      
+        for( $x = 0; $x < $len; $x++ ){
+      
+          $str_random .= $chars[rand(0, $max)];
+      
+        }
+      
+        return $str_random;
+    }      
+}
