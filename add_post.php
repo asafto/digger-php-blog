@@ -16,9 +16,9 @@ if( isset($_POST['submit']) ){
     // $title = !empty($_POST['title']) ? trim($_POST['title']) : '';
     // $article = !empty($_POST['article']) ? trim($_POST['article']) : '';
     //preventing xss attack
-    $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+    $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
     $title = trim($title);
-    $article = filter_input(INPUT_POST, 'article', FILTER_SANITIZE_STRING);
+    $article = filter_input(INPUT_POST, 'article', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
     $article = trim($article);
     
     $form_valid = true;

@@ -7,7 +7,7 @@ $page_title = 'The Blog';
 $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PWD, MYSQL_DB);
 mysqli_query($link, "SET NAMES utf8");
 
-$sql = "SELECT u.name,p.* FROM posts p 
+$sql = "SELECT u.name,u.profile_image,p.* FROM posts p 
         JOIN users u ON u.id = p.user_id
         ORDER BY p.date DESC";
 
@@ -39,13 +39,13 @@ $result = mysqli_query($link, $sql);
                 <div class="col-12 mt-3">
                     <div class="card">
                         <div class="card-header">
-                            <img class="rounded-circle" src="images/default-profile.png" width="40">
+                            <img class="rounded-circle" src="images/<?= $post['profile_image']; ?>" width="40">
                             <span class="ml-2"><?= htmlentities($post['name']); ?></span>
                             <span class="float-right"><?= date('d/m/Y H:i:s', strtotime($post['date'])); ?></span>
                         </div>
                         <div class="card-body">
                             <h3><?= htmlentities($post['title']); ?></h3>
-                            <p><?= htmlentities($post['article']); ?></p>
+                            <p><?= str_replace("\n", '<br>', htmlentities($post['article'])); ?></p>
                         </div>
                     </div>
                 </div>
