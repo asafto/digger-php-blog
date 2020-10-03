@@ -1,3 +1,25 @@
+<?php 
+require_once 'app/helpers.php';
+
+if ( isset($_SESSION['user_id']) ){
+    
+    if ( ! isset($link) ) {
+        $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PWD, MYSQL_DB);
+        mysqli_query($link, "SET NAMES utf8");
+    }
+    
+    $uid1 = $_SESSION['user_id'];
+    $sql1 = "SELECT profile_image FROM users WHERE id = $uid1";
+    $result1 = mysqli_query($link,$sql1);
+    if($result1 && mysqli_num_rows($result1) == 1) {
+        $user = mysqli_fetch_assoc($result1);
+    }
+    
+}
+
+ 
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +34,8 @@
     <!-- fontawasome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>digger | <?= $page_title; ?></title>
+    <title>digger | <?= $page_title; ?>
+    </title>
 </head>
 
 <body>
@@ -44,8 +67,10 @@
                             <a class="nav-link text-white" href="signup.php">Signup</a>
                         </li>
                         <?php else : ?>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="user_profile.php">
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white" href="user_profile.php?uid=<?= $uid1 ?>"><img
+                                    class="rounded-circle mr-1" src="images/<?= $user['profile_image']; ?>" width="30"
+                                    height="30">
                                 <?= htmlentities($_SESSION['user_name']); ?>
                             </a>
                         </li>

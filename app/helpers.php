@@ -10,8 +10,8 @@ if ( ! function_exists('old') ) {
      * @param...
      * @return string 
      */
-    function old($fn){
-        return $_REQUEST[$fn] ?? '';
+    function old($field_name){
+        return $_REQUEST[$field_name] ?? '';
     }
      
 }

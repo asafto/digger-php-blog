@@ -93,7 +93,7 @@ if( isset($_POST['submit']) ){
                                 <?= $error['article']; ?>
                             </span>
                         </div>
-                        <button type="submit" name="submit" class="btn btn-primary">Save Post</button>
+                        <button type="submit" name="submit" class="btn btn-primary mr-2">Save Post</button>
                         <a class="btn btn-secondary" href="blog.php">Cancel</a>
                     </form>
                 </div>

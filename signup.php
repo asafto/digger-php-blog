@@ -55,8 +55,9 @@ if( isset($_POST['submit']) ){
     if ( isset($_FILES['image']['error']) && $_FILES['image']['error'] == 0) {
         
         if (validate_image($_FILES)) {
-            $profile_image = date('d.m.Y.H.i.s') . '-' . str_rand(5) . '-' . $_FILES['image']['name'];
-            
+            $profile_image = str_replace('_', '-', $_FILES['image']['name']);
+            $profile_image = date('d.m.Y.H.i.s') . '_' . str_rand(5) . '_' . $_FILES['image']['name'];
+
             move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $profile_image);
         }
     }
