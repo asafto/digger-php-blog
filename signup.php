@@ -123,7 +123,8 @@ if( isset($_POST['submit']) ){
                             </div>
                             <div class="custom-file">
                                 <input type="file" name="image" id="image" class="custom-file-input">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                <label class="custom-file-label overflow-hidden" for="inputGroupFile01">Choose
+                                    file</label>
                             </div>
                         </div>
                         <button type="submit" name="submit" class="btn btn-primary">Signup</button>

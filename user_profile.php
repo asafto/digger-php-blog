@@ -166,7 +166,7 @@ if( isset($_POST['submit']) ){
                             </div>
                             <div class="custom-file">
                                 <input type="file" name="image" id="image" class="custom-file-input">
-                                <label class="custom-file-label" for="inputGroupFile01">
+                                <label class="custom-file-label overflow-hidden" for="inputGroupFile01">
                                     <?= $presented_pic ?></label>
                             </div>
                         </div>
