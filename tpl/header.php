@@ -67,12 +67,12 @@ if ( isset($_SESSION['user_id']) ){
                             <a class="nav-link text-white" href="signup.php">Signup</a>
                         </li>
                         <?php else : ?>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link text-white" href="user_profile.php?uid=<?= $uid1 ?>"><img
-                                    class="rounded-circle mr-1" src="images/<?= $user['profile_image']; ?>" width="30"
-                                    height="30">
-                                <?= htmlentities($_SESSION['user_name']); ?>
+                        <li class="nav-item user d-flex align-items-center">
+                            <a class="nav-link text-white" href="user_profile.php?uid=<?= $uid1 ?>">
+                                <?=htmlentities($_SESSION['user_name']); ?>
                             </a>
+                            <img class="rounded-circle m-1" src="images/<?= $user['profile_image']; ?>" width="30"
+                                height="30">
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="logout.php">Logout</a>
