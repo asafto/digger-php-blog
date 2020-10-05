@@ -21,14 +21,12 @@ $page_title = 'Home Page';
         <section id="main-content">
             <div class="row">
                 <div class="col-12 mt-3">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime earum reprehenderit
-                        doloribus.</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime earum reprehenderit
-                        doloribus.</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime earum reprehenderit
-                        doloribus.</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime earum reprehenderit
-                        doloribus.</p>
+                    <hr>
+                    <p>Digger is my first php website implementation</p>
+                    <p>You can view our blog through the link above, or contribute your posts by signing up
+                        <a href="signup.php">here...</a>
+                    </p>
+                    <hr>
                 </div>
             </div>
         </section>

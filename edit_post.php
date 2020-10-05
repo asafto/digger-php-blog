@@ -44,12 +44,12 @@ if( isset($_POST['submit']) ){
 
   if( ! $title || mb_strlen($title) < 2 ){
     $form_valid = false;
-    $error['title'] = '* Title is reuqired for min 2 chars';
+    $error['title'] = '* Title is required for min 2 chars';
   }
 
   if( ! $article || mb_strlen($article) < 2 ){
     $form_valid = false;
-    $error['article'] = '* Article is reuqired for min 2 chars';
+    $error['article'] = '* Article is required for min 2 chars';
   }
 
   if( $form_valid ){
@@ -59,7 +59,7 @@ if( isset($_POST['submit']) ){
     $article = mysqli_real_escape_string($link, $article);
 
     // update record
-    $sql = "UPDATE posts SET title = $title, article = $article WHERE id = $pid and user_id = $uid";
+    $sql = "UPDATE posts SET title = '$title', article = '$article' WHERE id = $pid and user_id = $uid";
     
     mysqli_query($link, $sql);
     header('location: blog.php');

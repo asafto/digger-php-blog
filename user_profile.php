@@ -58,20 +58,12 @@ if( isset($_POST['submit']) ){
     
     $password = $_POST['upd-password'];
     $password_check = false;
-    echo 'old password: ' . $current_password;
-    echo '<br>';
-    echo 'new password: ' . $password;
+    
     if ($password !== $current_password) {
         
         $password = filter_input(INPUT_POST, 'upd-password', FILTER_SANITIZE_STRING);
-        echo '<br>';
-        echo 'new password after filter input: ' . $password;
         $password = trim($password);
-        echo '<br>';
-        echo 'new password after trim: ' . $password;
         $password = mysqli_real_escape_string($link, $password);
-        echo '<br>';
-        echo 'new password after real_escape_string: ' . $password;
         $password_check = true;
         
     }
@@ -115,26 +107,17 @@ if( isset($_POST['submit']) ){
     }
     
     if ($password_check) {
+        
         $password = password_hash($password, PASSWORD_BCRYPT);
-        echo '<br>';
-        echo 'new hasshed password: ' . $password;
-        echo '<br>';
-        echo 'user id is: ' . $uid;
+        
     }
     
     $sql = "UPDATE users SET name = '$name', email = '$email', password = '$password', profile_image = '$profile_image' WHERE id = $uid";
     $result = mysqli_query($link, $sql);
-    
-    echo '<br>';
-    echo 'affected rows: ' . mysqli_affected_rows($link);
-        
-    if( $result && mysqli_affected_rows($link) > 0 ){
 
-      $_SESSION['user_id'] = $uid;
-      $_SESSION['user_name'] = $name;
-      header('location: blog.php');
-
-    }
+    $_SESSION['user_id'] = $uid;
+    $_SESSION['user_name'] = $name;
+    header('location: blog.php');
 
   }
 
